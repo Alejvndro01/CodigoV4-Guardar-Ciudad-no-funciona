@@ -1,0 +1,243 @@
+CREATE TABLE pais (
+    codigoPais VARCHAR(3) PRIMARY KEY,
+    nombrePais VARCHAR(100),
+    continentePais VARCHAR(50),
+    poblacionPais BIGINT,
+    tipoGobierno INT,
+    region VARCHAR(50),
+    superficie DECIMAL(10, 2),
+    añiIndependencia YEAR,
+    expectativaVida FLOAT,
+    pnb DECIMAL(12, 2),
+    jefeEstado VARCHAR(100),
+    ciudadCapital INT,
+    idiomaPais VARCHAR(100),
+    FOREIGN KEY (ciudadCapital) REFERENCES ciudad(idCiudad)
+);
+
+CREATE TABLE ciudad (
+    idCiudad INT PRIMARY KEY,
+    nombreCiudad VARCHAR(100),
+    poblacionCiudad INT,
+    codigoPais VARCHAR(3),
+    distrito VARCHAR(100)
+);
+
+CREATE TABLE idioma (
+    idIdioma INT PRIMARY KEY,
+    nombreIdioma VARCHAR(100),
+    oficial INT,
+    codigoPais VARCHAR(3),
+    porcentaje FLOAT,
+    FOREIGN KEY (codigoPais) REFERENCES pais(codigoPais)
+);
+
+ALTER TABLE pais CHANGE COLUMN añoIndependencia añoIndependencia INT;
+
+
+INSERT INTO pais (codigoPais, nombrePais, continentePais, poblacionPais, tipoGobierno, region, superficie, añoIndependencia, expectativaVida, pnb, jefeEstado, ciudadCapital, idiomaPais)
+VALUES
+('ARG', 'Argentina', 'América', 45195777, 0, 'América del Sur', 2780400, 1816, 77.5, 634650, 'Alberto Fernández', 1, 'Español'),
+('BRA', 'Brasil', 'América', 211049527, 0, 'América del Sur', 8515767, 1822, 76.7, 2085000, 'Luiz Inácio Lula da Silva', 2, 'Portugués'),
+('CHL', 'Chile', 'América', 19116201, 1, 'América del Sur', 756102, 1818, 79.0, 282318, 'Gabriel Boric', 3, 'Español'),
+('PRT', 'Portugal', 'Europa', 10196709, 1, 'Europa Meridional', 92212, 1143, 81.0, 243700, 'Marcelo Rebelo de Sousa', 4, 'Portugués'),
+('ESP', 'España', 'Europa', 46719142, 1, 'Europa Meridional', 505992, 1492, 82.0, 1770600, 'Pedro Sánchez', 5, 'Español'),
+('FRA', 'Francia', 'Europa', 65273511, 1, 'Europa Occidental', 551695, 843, 82.0, 2715500, 'Emmanuel Macron', 6, 'Francés'),
+('ITA', 'Italia', 'Europa', 60246816, 1, 'Europa Meridional', 301340, 1861, 83.0, 2090000, 'Sergio Mattarella', 7, 'Italiano'),
+('DEU', 'Alemania', 'Europa', 83783942, 1, 'Europa Central', 357022, 1871, 81.0, 3845630, 'Frank-Walter Steinmeier', 8, 'Alemán'),
+('GBR', 'Reino Unido', 'Europa', 67886011, 1, 'Europa Occidental', 243610, 1707, 81.0, 2787222, 'Carlos III', 9, 'Inglés'),
+('NLD', 'Países Bajos', 'Europa', 17134872, 1, 'Europa Occidental', 41850, 1581, 81.0, 902355, 'Mark Rutte', 10, 'Neerlandés'),
+('BEL', 'Bélgica', 'Europa', 11589623, 1, 'Europa Occidental', 30528, 1830, 81.0, 529181, 'Alexander De Croo', 11, 'Neerlandés, Francés'),
+('SWE', 'Suecia', 'Europa', 10099265, 1, 'Europa del Norte', 450295, 1905, 82.0, 529132, 'Ulf Kristersson', 12, 'Sueco'),
+('DNK', 'Dinamarca', 'Europa', 5792203, 1, 'Europa del Norte', 42933, 1814, 81.0, 306226, 'Mette Frederiksen', 13, 'Danés'),
+('FIN', 'Finlandia', 'Europa', 5540720, 1, 'Europa del Norte', 338424, 1917, 82.0, 269300, 'Sauli Niinistö', 14, 'Finés'),
+('NOR', 'Noruega', 'Europa', 5421241, 1, 'Europa del Norte', 148729, 1905, 82.0, 434250, 'Erna Solberg', 15, 'Noruego'),
+('ICE', 'Islandia', 'Europa', 343599, 1, 'Europa del Norte', 103000, 1944, 83.0, 20680, 'Guðni Th. Jóhannesson', 16, 'Islandés'),
+('POL', 'Polonia', 'Europa', 38386000, 0, 'Europa Central', 312696, 1989, 78.5, 585000, 'Andrzej Duda', 17, 'Polaco'),
+('RUS', 'Rusia', 'Europa', 145934462, 0, 'Europa del Este', 17098242, 1991, 72.0, 1635000, 'Vladimir Putin', 18, 'Ruso'),
+('CZE', 'República Checa', 'Europa', 10708981, 1, 'Europa Central', 78865, 1993, 79.0, 210910, 'Petr Pavel', 19, 'Checo'),
+('SVK', 'Eslovaquia', 'Europa', 5456362, 1, 'Europa Central', 49037, 1993, 78.0, 88799, 'Zuzana Čaputová', 20, 'Eslovaco'),
+('HUN', 'Hungría', 'Europa', 9660351, 0, 'Europa Central', 93028, 1989, 76.0, 245500, 'Katalin Novák', 21, 'Húngaro'),
+('AUT', 'Austria', 'Europa', 9006398, 1, 'Europa Central', 83871, 1955, 81.0, 416535, 'Alexander Van der Bellen', 22, 'Alemán'),
+('CHE', 'Suiza', 'Europa', 8654622, 1, 'Europa Central', 41285, 1291, 83.0, 824004, 'Alain Berset', 23, 'Alemán, Francés'),
+('LUX', 'Luxemburgo', 'Europa', 634814, 1, 'Europa Occidental', 2586, 1839, 82.0, 72151, 'Xavier Bettel', 24, 'Luxemburgués'),
+('MON', 'Mónaco', 'Europa', 39242, 1, 'Europa Meridional', 2, 1297, 85.0, 6700, 'Alberto II', 25, 'Mónaco'),
+('AND', 'Andorra', 'Europa', 77265, 1, 'Europa Meridional', 468, 1278, 82.0, 3100, 'Xavier Espot Zamora', 26, 'Andorra la Vieja');
+
+-- África
+INSERT INTO pais (codigoPais, nombrePais, continentePais, poblacionPais, tipoGobierno, region, superficie, añoIndependencia, expectativaVida, pnb, jefeEstado, ciudadCapital, idiomaPais)
+VALUES
+('EGY', 'Egipto', 'África', 91250000, 1, 'Norte de África', 1002450, 1952, 72.6, 52000, 'Abdel Fattah el-Sisi', 53, 'Árabe'),
+('KEN', 'Kenia', 'África', 53771000, 1, 'África Oriental', 580367, 1963, 66.7, 5200, 'William Ruto', 54, 'Inglés'),
+('NGA', 'Nigeria', 'África', 206000000, 0, 'África Occidental', 923768, 1960, 60.5, 2200, 'Muhammadu Buhari', 55, 'Yoruba'),
+('ZAF', 'Sudáfrica', 'África', 58870000, 1, 'África Meridional', 1219090, 1994, 63.5, 45000, 'Cyril Ramaphosa', 56, 'Afrikaans');
+-- Ciudades de África
+INSERT INTO ciudad (idCiudad, nombreCiudad, poblacionCiudad, codigoPais, distrito)
+VALUES
+(53, 'El Cairo', 9300000, 'EGY', 'Gran El Cairo'),
+(54, 'Nairobi', 4390000, 'KEN', 'Nairobi'),
+(55, 'Lagos', 9000000, 'NGA', 'Lagos'),
+(56, 'Johannesburgo', 4400000, 'ZAF', 'Gauteng');
+
+-- América
+INSERT INTO pais (codigoPais, nombrePais, continentePais, poblacionPais, tipoGobierno, region, superficie, añoIndependencia, expectativaVida, pnb, jefeEstado, ciudadCapital, idiomaPais)
+VALUES
+('CAN', 'Canadá', 'América del Norte', 37742154, 1, 'América del Norte', 9984670, 1867, 82.2, 46000, 'Justin Trudeau', 57, 'Inglés'),
+('MEX', 'México', 'América del Norte', 126190788, 0, 'América del Norte', 1964375, 1810, 76.5, 10400, 'Andrés Manuel López Obrador', 58, 'Español'),
+('PER', 'Perú', 'América del Sur', 32971846, 1, 'América del Sur', 1285216, 1821, 76.3, 8000, 'Dina Boluarte', 59, 'Español'),
+('COL', 'Colombia', 'América del Sur', 50882891, 1, 'América del Sur', 1141748, 1810, 77.4, 16000, 'Gustavo Petro', 60, 'Español');
+-- Ciudades de América
+INSERT INTO ciudad (idCiudad, nombreCiudad, poblacionCiudad, codigoPais, distrito)
+VALUES
+(57, 'Ottawa', 934243, 'CAN', 'Ontario'),
+(58, 'Ciudad de México', 9209944, 'MEX', 'CDMX'),
+(59, 'Lima', 9740000, 'PER', 'Lima'),
+(60, 'Bogotá', 7600000, 'COL', 'Bogotá');
+
+-- Asia
+INSERT INTO pais (codigoPais, nombrePais, continentePais, poblacionPais, tipoGobierno, region, superficie, añoIndependencia, expectativaVida, pnb, jefeEstado, ciudadCapital, idiomaPais)
+VALUES
+('CHN', 'China', 'Asia', 1393409038, 0, 'Asia Oriental', 9596961, 1949, 76.9, 12000, 'Xi Jinping', 61, 'Chino mandarín'),
+('IND', 'India', 'Asia', 1380004385, 0, 'Asia Meridional', 3287263, 1947, 69.4, 2100, 'Droupadi Murmu', 62, 'Hindi'),
+('JPN', 'Japón', 'Asia', 125584838, 1, 'Asia Oriental', 377975, 1952, 84.6, 40000, 'Narendra Modi', 63, 'Japonés'),
+('AUS', 'Australia', 'Oceanía', 25687041, 1, 'Oceanía', 7692024, 1901, 82.9, 57000, 'Anthony Albanese', 64, 'Inglés');
+-- Ciudades de Asia
+INSERT INTO ciudad (idCiudad, nombreCiudad, poblacionCiudad, codigoPais, distrito)
+VALUES
+(61, 'Pekín', 21500000, 'CHN', 'Pekín'),
+(62, 'Delhi', 31000000, 'IND', 'Delhi'),
+(63, 'Tokio', 13929286, 'JPN', 'Kantō'),
+(64, 'Sídney', 5300000, 'AUS', 'Nueva Gales del Sur');
+
+-- Oceanía
+INSERT INTO pais (codigoPais, nombrePais, continentePais, poblacionPais, tipoGobierno, region, superficie, añoIndependencia, expectativaVida, pnb, jefeEstado, ciudadCapital, idiomaPais)
+VALUES
+
+('NZL', 'Nueva Zelanda', 'Oceanía', 5084300, 1, 'Oceanía', 268021, 1907, 81.4, 38000, 'Chris Hipkins', 66, 'Inglés'),
+('PNG', 'Papúa Nueva Guinea', 'Oceanía', 8000000, 0, 'Oceanía', 462840, 1975, 64.3, 3000, 'James Marape', 67, 'Tok Pisin');
+-- Ciudades de Oceanía
+INSERT INTO ciudad (idCiudad, nombreCiudad, poblacionCiudad, codigoPais, distrito)
+VALUES
+(65, 'Sídney', 5300000, 'AUS', 'Nueva Gales del Sur'),
+(66, 'Auckland', 1500000, 'NZL', 'Auckland'),
+(67, 'Port Moresby', 400000, 'PNG', 'NCD');
+
+-- Idiomas de los países
+INSERT INTO Idioma (idIdioma, nombreIdioma, oficial, codigoPais, porcentaje)
+VALUES
+(39, 'Árabe', 1, 'EGY', 100),
+(40, 'Inglés', 1, 'KEN', 90),
+(41, 'Yoruba', 0, 'NGA', 20),
+(42, 'Afrikaans', 1, 'ZAF', 50),
+(43, 'Inglés', 1, 'CAN', 100),
+(44, 'Español', 1, 'MEX', 100),
+(45, 'Quechua', 0, 'PER', 13),
+(46, 'Español', 1, 'COL', 100),
+(47, 'Chino Mandarín', 1, 'CHN', 90),
+(48, 'Hindi', 1, 'IND', 44),
+(49, 'Japonés', 1, 'JPN', 100),
+(50, 'Inglés', 1, 'AUS', 100),
+(51, 'Inglés', 1, 'NZL', 100),
+(52, 'Tok Pisin', 1, 'PNG', 50);
+
+
+
+
+INSERT INTO ciudad (idCiudad, nombreCiudad, poblacionCiudad, codigoPais, distrito)
+VALUES
+(1, 'Buenos Aires', 2890151, 'ARG', 'Buenos Aires'),
+(2, 'Brasilia', 3055149, 'BRA', 'Distrito Federal'),
+(3, 'Santiago', 5000000, 'CHL', 'Región Metropolitana'),
+(4, 'Lisboa', 504718, 'PRT', 'Lisboa'),
+(5, 'Madrid', 3200000, 'ESP', 'Madrid'),
+(6, 'París', 2148327, 'FRA', 'Île-de-France'),
+(7, 'Roma', 2873000, 'ITA', 'Lazio'),
+(8, 'Berlín', 3759000, 'DEU', 'Berlín'),
+(9, 'Londres', 8982000, 'GBR', 'Greater London'),
+(10, 'Ámsterdam', 872680, 'NLD', 'Ámsterdam'),
+(11, 'Bruselas', 1780000, 'BEL', 'Bruselas'),
+(12, 'Estocolmo', 975904, 'SWE', 'Estocolmo'),
+(13, 'Copenhague', 794128, 'DNK', 'Hovedstaden'),
+(14, 'Mar del Plata', 617400, 'ARG', 'Buenos Aires'),
+(15, 'Porto Alegre', 1483000, 'BRA', 'Rio Grande do Sul'),
+(16, 'Concepción', 215000, 'CHL', 'Biobío'),
+(17, 'Coimbra', 143000, 'PRT', 'Centro'),
+(18, 'Sevilla', 1880000, 'ESP', 'Andalucía'),
+(19, 'Lille', 233098, 'FRA', 'Hauts-de-France'),
+(20, 'Nápoles', 960000, 'ITA', 'Campania'),
+(21, 'Múnich', 1471508, 'DEU', 'Baviera'),
+(22, 'Liverpool', 491500, 'GBR', 'Inglaterra'),
+(23, 'La Haya', 520000, 'NLD', 'Holanda Meridional'),
+(24, 'Antwerp', 520504, 'BEL', 'Flandes Oriental'),
+(25, 'Malmo', 317000, 'SWE', 'Escania'),
+(26, 'Odense', 180000, 'DNK', 'Dinamarca del Sur'),
+(27, 'Salta', 535303, 'ARG', 'Salta'),
+(28, 'Rio de Janeiro', 6748000, 'BRA', 'Rio de Janeiro'),
+(29, 'Valparaíso', 300000, 'CHL', 'Valparaíso'),
+(30, 'Oporto', 237500, 'PRT', 'Oporto'),
+(31, 'Barcelona', 1620343, 'ESP', 'Cataluña'),
+(32, 'Lyon', 513275, 'FRA', 'Auvernia-Ródano-Alpes'),
+(33, 'Milán', 1378689, 'ITA', 'Lombardía'),
+(34, 'Hamburgo', 1841179, 'DEU', 'Hamburgo'),
+(35, 'Manchester', 547627, 'GBR', 'Inglaterra'),
+(36, 'Rotterdam', 623652, 'NLD', 'Holanda Meridional'),
+(37, 'Gante', 262219, 'BEL', 'Flandes Oriental'),
+(38, 'Gotemburgo', 573343, 'SWE', 'Västra Götaland'),
+(39, 'Aarhus', 319000, 'DNK', 'Jutlandia Central'),
+(40, 'Helsinki', 631695, 'FIN', 'Uusimaa'),
+(41, 'Oslo', 1041965, 'NOR', 'Oslo'),
+(42, 'Reikiavik', 130000, 'ICE', 'Capital Region'),
+(43, 'Krakovia', 779115, 'POL', 'Pequeña Polonia'),
+(44, 'San Petersburgo', 5351935, 'RUS', 'Noroeste'),
+(45, 'Praga', 1301138, 'CZE', 'Praga'),
+(46, 'Bratislava', 432864, 'SVK', 'Bratislava'),
+(47, 'Budapest', 1752286, 'HUN', 'Central Hungría'),
+(48, 'Viena', 1897491, 'AUT', 'Viena'),
+(49, 'Zurich', 421878, 'CHE', 'Zurich'),
+(50, 'Eschen', 1000, 'LUX', 'Luxemburgo'),
+(51, 'Montecarlo', 2500, 'MON', 'Mónaco'),
+(52, 'Andorra la Vieja', 22000, 'AND', 'Andorra')
+
+
+
+INSERT INTO idioma (idIdioma, nombreIdioma, oficial, codigoPais, porcentaje)
+VALUES
+(1, 'Español', 1, 'ARG', 99.0),
+(2, 'Portugués', 1, 'BRA', 98.0),
+(3, 'Español', 1, 'CHL', 98.0),
+(4, 'Portugués', 1, 'PRT', 100.0),
+(5, 'Español', 1, 'ESP', 99.0),
+(6, 'Francés', 1, 'FRA', 100.0),
+(7, 'Italiano', 1, 'ITA', 100.0),
+(8, 'Alemán', 1, 'DEU', 90.0),
+(9, 'Inglés', 1, 'GBR', 100.0),
+(10, 'Neerlandés', 1, 'NLD', 100.0),
+(11, 'Neerlandés', 1, 'BEL', 60.0),
+(12, 'Sueco', 1, 'SWE', 100.0),
+(13, 'Danés', 1, 'DNK', 100.0),
+(14, 'Quechua', 0, 'ARG', 13.0),
+(15, 'Tupí Guaraní', 0, 'BRA', 3.0),
+(16, 'Mapuche', 0, 'CHL', 2.0),
+(17, 'Gallego', 1, 'PRT', 10.0),
+(18, 'Catalán', 1, 'ESP', 9.0),
+(19, 'Occitano', 0, 'FRA', 2.0),
+(20, 'Sardo', 0, 'ITA', 1.0),
+(21, 'Bávaro', 0, 'DEU', 1.5),
+(22, 'Escocés', 0, 'GBR', 0.5),
+(23, 'Frisio', 0, 'NLD', 1.0),
+(24, 'Valón', 0, 'BEL', 1.0),
+(25, 'Sami', 0, 'SWE', 2.0),
+(26, 'Feroés', 0, 'DNK', 0.3),
+(27, 'Laponio', 0, 'FIN', 0.1),
+(28, 'Uralico', 0, 'NOR', 0.2),
+(29, 'Yiddish', 0, 'ICE', 0.5),
+(30, 'Polaco', 1, 'POL', 99.5),
+(31, 'Checheno', 0, 'RUS', 0.5),
+(32, 'Eslovaco', 1, 'SVK', 90.0),
+(33, 'Serbio', 1, 'HUN', 85.0),
+(34, 'Italiano', 1, 'AUT', 100.0),
+(35, 'Romanche', 0, 'CHE', 0.5),
+(36, 'Luxemburgués', 1, 'LUX', 75.0),
+(37, 'Monegasco', 0, 'MON', 0.1),
+(38, 'Catalán', 1, 'AND', 50.0);
+
